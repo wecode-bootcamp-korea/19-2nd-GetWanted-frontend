@@ -1,4 +1,4 @@
-const Theme = {
+const theme = {
   mainGray: '#666',
   mediumGray: '#717171',
   lightGray: '#a4a4a4',
@@ -31,4 +31,4 @@ const Theme = {
   },
 };
 
-export default Theme;
+export default theme;
