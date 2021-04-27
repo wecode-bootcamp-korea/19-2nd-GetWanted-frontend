@@ -5,12 +5,14 @@ import Signup from './Pages/Signup/index';
 import JobList from './Pages/JobList/index';
 import JobDetails from './Pages/JobDetails/index';
 import Resume from './Pages/Resume/index';
+import Nav from './Components/Nav/Nav';
 
 class Routes extends React.Component {
   render() {
     return (
       <Router>
         <Switch>
+          <Route exact path="/nav" component={Nav} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/" component={JobList} />
