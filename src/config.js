@@ -8,3 +8,7 @@ export const GET_JOBLIST_API = `http://${JYIP}/notifications`;
 export const EMAIL_API = `http://${JYIP}/users/email`;
 export const LOGIN_API = `http://${JYIP}/users/signi`;
 export const SIGNUP_API = `http://${JYIP}/users/signu`;
+const IP = 'http://10.58.7.44:8000';
+export const STORAGE_FORMS_API = `${IP}/resumes`;
+export const STORAGE_FILES_API = `${IP}/resumes/files`;
+export const STORAGE_LIST_API = `${IP}/resumes/lists`;
