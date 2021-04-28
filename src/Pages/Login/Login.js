@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaRegEnvelope, FaComment } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 
-const Login = () => {
+const Login = props => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleBorder = () => {
+    setIsActive(!isActive);
+  };
   return (
     <LoginWrapper>
       <ModalHeader>
         <img alt="로고이미지" src={'/images/getwanted.jpg'}></img>
+        <CloseButton>
+          <IoMdClose />
+        </CloseButton>
       </ModalHeader>
       <ModalBody>
         <h1>
@@ -18,13 +27,15 @@ const Login = () => {
           커리어 성장과 행복을 위한 여정 <br />
           지금 원티드에서 시작하세요.
         </h2>
-        <Form>
+        <Form isActive={isActive}>
           <label for="email-input">
             이메일
             <input
               type="email"
               placeholder="이메일을 입력해주세요"
               id="email-input"
+              onFocus={handleBorder}
+              onBlur={handleBorder}
             />
             <Button>
               <FaRegEnvelope />
@@ -56,11 +67,27 @@ const LoginWrapper = styled.div`
 `;
 
 const ModalHeader = styled.div`
+  position: relative;
   padding: 16px 20px;
   display: flex;
   justify-content: center;
   img {
     width: 150px;
+  }
+`;
+
+const CloseButton = styled.button`
+  background-color: white;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  svg {
+    width: 54px;
+    height: 54px;
+    padding: 15px;
+    border: none;
+    background-color: white;
   }
 `;
 
@@ -85,8 +112,7 @@ const ModalBody = styled.div`
 `;
 
 const Form = styled.div`
-
-  display:flex;
+  display: flex;
   justify-content: center;
 
   label {
@@ -103,20 +129,21 @@ const Form = styled.div`
     height: 50px;
     padding-right: 15px;
     padding-left: 15px;
-    margin 20px 0;
-    border: 1px solid ${props => props.theme.grayBtn};
+    margin: 20px 0;
+    border: 1px solid
+      ${props => (props.isActive ? props.theme.blueTitle : props.theme.grayBtn)};
     border-radius: 5px;
-    fon-size: 15px;
+    font-size: 15px;
 
     &::placeholder {
       color: ${props => props.theme.lightGray};
-      font-size:14px;
+      font-size: 14px;
     }
   }
-  span{
-    display:block;
+  span {
+    display: block;
     margin: 10px auto;
-    font-size:14px;
+    font-size: 14px;
   }
 `;
 const Button = styled.button`
