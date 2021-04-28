@@ -5,9 +5,8 @@ import { FiDownload } from 'react-icons/fi';
 import styled from 'styled-components';
 import { STORAGE_FILES_API } from '../../../config';
 
-const FileButton = ({ id, resume, type, isSelected, deleteResume }) => {
+const FileButton = ({ id, resume, type, deleteResume }) => {
   const history = useHistory();
-  // const [docType, setDocType] = useState();
   const [docStatus, setDocStatus] = useState('');
 
   useEffect(() => {
@@ -59,8 +58,8 @@ const FileButton = ({ id, resume, type, isSelected, deleteResume }) => {
   };
 
   return (
-    <FileButtonBox onClick={goToNext} id={id} type={type}>
-      <FileInfo>
+    <FileButtonBox id={id} type={type}>
+      <FileInfo onClick={goToNext}>
         <FileName id={id}>{resume.name}</FileName>
         <FileDate id={id}>{resume.date}</FileDate>
       </FileInfo>
