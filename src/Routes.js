@@ -8,6 +8,7 @@ import JobDetails from './Pages/JobDetails/index';
 import Resume from './Pages/Resume/index';
 import Nav from './Components/Nav';
 import Application from './Pages/Application/Application';
+import ResumeStorage from './Pages/ResumeStorage/ResumeStorage';
 
 class Routes extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class Routes extends React.Component {
           <Route exact path="/jobdetails" component={JobDetails} />
           <Route exact path="/resume" component={Resume} />
           <Route exact path="/apply" component={Application} />
+          <Route exact path="/storage" component={ResumeStorage} />
         </Switch>
       </Router>
     );
