@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Signinputs from './Components/Signinputs';
 import { useHistory, useLocation } from 'react-router-dom';
 import { IoMdClose } from 'react-icons/io';
 import { SIGNUP_API } from '../../config';
@@ -7,6 +8,7 @@ import { SIGNUP_API } from '../../config';
 const Signup = props => {
   const location = useLocation();
   const history = useHistory();
+  const [showModal, setShowModal] = useState(true);
 
   const [InputActive, setInputActive] = useState({
     name: false,
@@ -16,7 +18,7 @@ const Signup = props => {
   });
 
   const [inValue, setValue] = useState({
-    email: '',
+    email: location.state.email,
     name: '',
     phonenumber: '',
     password: '',
@@ -24,6 +26,15 @@ const Signup = props => {
     position: '',
   });
   const [pwdValidation, setPwdValidation] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(prev => !prev);
+  };
+
+  const goToMain = () => {
+    history.push('/');
+    closeModal();
+  };
 
   const handleBorder = e => {
     const { name } = e.target;
@@ -36,12 +47,8 @@ const Signup = props => {
 
   const inputValue = e => {
     const { name, value } = e.target;
-    console.log(value);
     setValue({ ...inValue, [name]: value });
-    setValue({ email: location.state.email });
   };
-
-  // console.log(inValue);
 
   const passwordCheck = e => {
     if (inValue.password !== inValue.repwd) {
@@ -49,7 +56,6 @@ const Signup = props => {
       alert('비밀번호가 일치하지 않습니다!');
     }
     if (inValue.password === inValue.repwd) dataSend();
-    console.log(inValue);
   };
 
   const dataSend = () => {
@@ -76,81 +82,36 @@ const Signup = props => {
         } else if (data['MESSAGE'] === 'INVALID_NUMBER') {
           alert('연락처 형식은 010-1234-5678 입니다');
         }
-        // console.log(data);
       });
   };
 
   return (
-    <>
+    showModal && (
       <Background>
         <SignupWrapper>
           <ModalHeader>
             <h3>회원가입</h3>
-            <CloseButton>
+            <CloseButton onClick={goToMain}>
               <IoMdClose />
             </CloseButton>
           </ModalHeader>
           <ModalBody>
             <Form>
-              <label htmlfor="0">
-                <NameInput InputActive={InputActive}>
-                  이름
-                  <input
-                    type="text"
-                    placeholder="이름을 입력해주세요"
-                    id="0"
-                    name="name"
-                    onFocus={handleBorder}
-                    onBlur={handleBorder}
-                    onChange={inputValue}
+              {signUpList.map((content, idx) => {
+                return (
+                  <Signinputs
+                    key={content.id}
+                    idx={idx}
+                    name={content.name}
+                    type={content.type}
+                    title={content.title}
+                    placeholder={content.placeholder}
+                    handleBorder={handleBorder}
+                    inputValue={inputValue}
+                    InputActive={InputActive}
                   />
-                </NameInput>
-              </label>
-
-              <label htmlfor="1">
-                <PhoneInput InputActive={InputActive}>
-                  휴대폰 번호
-                  <input
-                    type="text"
-                    placeholder="(예시)010-3456-7890"
-                    id="1"
-                    name="phonenumber"
-                    onFocus={handleBorder}
-                    onBlur={handleBorder}
-                    onChange={inputValue}
-                  />
-                </PhoneInput>
-              </label>
-
-              <label htmlfor="2">
-                <PwdInput InputActive={InputActive}>
-                  비밀번호
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="비밀 번호를 6자리 이상 입력해주세요"
-                    id="2"
-                    onFocus={handleBorder}
-                    onBlur={handleBorder}
-                    onChange={inputValue}
-                  />
-                </PwdInput>
-              </label>
-
-              <label for="3">
-                <RePwd InputActive={InputActive}>
-                  비밀번호 확인
-                  <input
-                    type="password"
-                    name="repwd"
-                    placeholder="비밀 번호를 다시 한 번 입력해주세요"
-                    id="3"
-                    onFocus={handleBorder}
-                    onBlur={handleBorder}
-                    onChange={inputValue}
-                  />
-                </RePwd>
-              </label>
+                );
+              })}
               <TypeSection>
                 <input
                   type="radio"
@@ -179,7 +140,7 @@ const Signup = props => {
           </ModalBody>
         </SignupWrapper>
       </Background>
-    </>
+    )
   );
 };
 
@@ -244,91 +205,6 @@ const Form = styled.div`
   }
 `;
 
-const NameInput = styled.div`
-  input {
-    width: 343px;
-    height: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 20px 0;
-    border: 1px solid
-      ${props =>
-        props.InputActive.name ? props.theme.blueTitle : props.theme.grayBtn};
-
-    border-radius: 5px;
-    font-size: 15px;
-
-    &::placeholder {
-      color: ${props => props.theme.lightGray};
-      font-size: 14px;
-    }
-  }
-`;
-
-const PhoneInput = styled.div`
-  input {
-    width: 343px;
-    height: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 20px 0;
-    border: 1px solid
-      ${props =>
-        props.InputActive.pahonenumber
-          ? props.theme.blueTitle
-          : props.theme.grayBtn};
-    border-radius: 5px;
-    font-size: 15px;
-
-    &::placeholder {
-      color: ${props => props.theme.lightGray};
-      font-size: 14px;
-    }
-  }
-`;
-
-const PwdInput = styled.div`
-  input {
-    width: 343px;
-    height: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 20px 0;
-    border: 1px solid
-      ${props =>
-        props.InputActive.password
-          ? props.theme.blueTitle
-          : props.theme.grayBtn};
-    border-radius: 5px;
-    font-size: 15px;
-
-    &::placeholder {
-      color: ${props => props.theme.lightGray};
-      font-size: 14px;
-    }
-  }
-`;
-
-const RePwd = styled.div`
-  input {
-    width: 343px;
-    height: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 20px 0;
-    border: 1px solid
-      ${props =>
-        props.InputActive.repwd ? props.theme.blueTitle : props.theme.grayBtn};
-    border-radius: 5px;
-    font-size: 15px;
-
-    &::placeholder {
-      color: ${props => props.theme.lightGray};
-      font-size: 14px;
-    }
-  }
-`;
-
 const TypeSection = styled.div`
   ${props => props.theme.flexCenter};
   margin-right: 20px;
@@ -351,3 +227,34 @@ const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
 `;
+
+const signUpList = [
+  {
+    id: 0,
+    title: '이름',
+    type: 'text',
+    placeholder: '이름을 입력해주세요',
+    name: 'name',
+  },
+  {
+    id: 1,
+    title: '휴대폰 번호',
+    type: 'text',
+    placeholder: '(예시)010-3456-7890',
+    name: 'phonenumber',
+  },
+  {
+    id: 2,
+    title: '비밀번호',
+    type: 'password',
+    placeholder: '비밀 번호를 6자리 이상 입력해주세요',
+    name: 'password',
+  },
+  {
+    id: 3,
+    title: '비밀번호 확인',
+    type: 'password',
+    placeholder: '비밀 번호를 다시 한 번 입력해주세요',
+    name: 'repwd',
+  },
+];

@@ -3,10 +3,12 @@ import { IoMdClose } from 'react-icons/io';
 import { useHistory, useLocation } from 'react-router-dom';
 import { LOGIN_API } from '../../../config';
 import styled from 'styled-components';
+import PassChange from '../Components/PassChange';
 
 const Userpassword = () => {
   const [isActive, setIsActive] = useState(false);
   const [passWord, setPassWord] = useState('');
+  const [passChangeClick, setPassChangeClick] = useState(false);
 
   const location = useLocation();
   const history = useHistory();
@@ -42,7 +44,6 @@ const Userpassword = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('결과 :', data);
         if (data['MESSAGE'] === 'SUCCESS') {
           alert('로그인 성공!');
           history.push('/');
@@ -53,10 +54,27 @@ const Userpassword = () => {
       });
   };
 
+  const ChangePassword = () => {
+    setPassChangeClick(true);
+  };
+
+  const handleEnterEvent = e => {
+    if (e.keyCode === 13) {
+      goToLogin();
+    }
+  };
+
   return (
-    <>
-      {showModal ? (
-        <Background>
+    showModal && (
+      <Background>
+        {passChangeClick ? (
+          <PassChange
+            goToMain={goToMain}
+            isActive={isActive}
+            handleBorder={handleBorder}
+            email={location.state.email}
+          />
+        ) : (
           <PassWrapper>
             <ModalHeader>
               <h3>비밀번호 입력</h3>
@@ -76,15 +94,17 @@ const Userpassword = () => {
                     onChange={valueInput}
                     onFocus={handleBorder}
                     onBlur={handleBorder}
+                    onKeyDown={handleEnterEvent}
                   />
                   <Button onClick={goToLogin}>로그인</Button>
                 </label>
               </Form>
+              <Password onClick={ChangePassword}>비밀번호 초기화/변경</Password>
             </ModalBody>
           </PassWrapper>
-        </Background>
-      ) : null}
-    </>
+        )}
+      </Background>
+    )
   );
 };
 
@@ -177,4 +197,12 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
   cursor: pointer;
+`;
+
+const Password = styled.button`
+  padding-top: 20px;
+  border: none;
+  background-color: white;
+  color: ${props => props.theme.blueTitle};
+  font-weight: bold;
 `;

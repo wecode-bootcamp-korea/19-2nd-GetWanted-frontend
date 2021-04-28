@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { BsSearch, BsBell } from 'react-icons/bs';
-import { GET_LOGIN_API } from '../../config/config';
+import { GET_LOGIN_API } from '../../config';
 import axios from 'axios';
 import * as styled from './Nav.style';
 import MyMenu from './Mymenu/MyMenu';
