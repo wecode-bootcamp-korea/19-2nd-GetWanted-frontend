@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as styled from './JobList.style';
 import JobItem from './Components/JobItems';
 import FilterBoxModal from './Components/FilterBoxModal';
-import { GET_JOBLIST_API } from './config/config';
+import { GET_JOBLIST_API } from '../../config';
 import { MdArrowDropDown } from 'react-icons/md';
 import axios from 'axios';
 

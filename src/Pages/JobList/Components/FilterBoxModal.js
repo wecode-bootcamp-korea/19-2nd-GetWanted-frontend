@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GET_JOBLIST_API } from '../config/config';
+import { GET_JOBLIST_API } from '../../../config';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import { MdClose } from 'react-icons/md';
 import axios from 'axios';
