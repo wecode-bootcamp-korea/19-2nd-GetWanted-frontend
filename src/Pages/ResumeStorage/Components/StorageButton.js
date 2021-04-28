@@ -59,6 +59,7 @@ const StorageButton = ({ type }) => {
     )
       .then(res => res.json())
       .then(result => {
+        console.log(result);
         setIsSelected(!isSelected);
       })
       .catch(error => console.log(error));
@@ -75,6 +76,7 @@ const StorageButton = ({ type }) => {
       .then(list => {
         setResumeList(list.RESULTS[0].resume_list);
         setFileList(list.RESULTS[0].fileresume_list);
+        console.log(resumeList);
       })
       .catch(err => console.log(err));
   }, [isSelected]);
