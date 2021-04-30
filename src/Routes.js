@@ -5,6 +5,7 @@ import Signup from './Pages/Signup/index';
 import JobList from './Pages/JobList/JobList';
 import JobDetails from './Pages/JobDetails/index';
 import Resume from './Pages/Resume/index';
+import Application from './Pages/Application/Application';
 
 class Routes extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={JobList} />
           <Route exact path="/jobdetails" component={JobDetails} />
           <Route exact path="/resume" component={Resume} />
+          <Route exact path="/apply" component={Application} />
         </Switch>
       </Router>
     );
