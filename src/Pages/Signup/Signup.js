@@ -136,7 +136,18 @@ const Signup = props => {
                 풀스택
               </TypeSection>
             </Form>
-            <Button onClick={passwordCheck}>회원가입하기</Button>
+            <Button
+              onClick={passwordCheck}
+              isAllCheck={
+                inValue.name.length > 0 &&
+                inValue.phonenumber.length > 8 &&
+                inValue.password.length > 5 &&
+                inValue.password === inValue.repwd &&
+                inValue.position !== ''
+              }
+            >
+              회원가입하기
+            </Button>
           </ModalBody>
         </SignupWrapper>
       </Background>
@@ -222,7 +233,8 @@ const Button = styled.button`
   margin: 15px 0;
   border: none;
   border-radius: 27px;
-  background-color: ${props => props.theme.blueTitle};
+  background-color: ${props =>
+    props.isAllCheck ? props.theme.blueTitle : props.theme.lightGray};
   color: white;
   font-weight: 600;
   cursor: pointer;

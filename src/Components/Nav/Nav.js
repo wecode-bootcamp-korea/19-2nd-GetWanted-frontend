@@ -81,9 +81,9 @@ const Nav = () => {
     }
   };
 
-  useEffect(() => {
-    history.push(`/?search=${keyword}`);
-  }, [keyword]);
+  // useEffect(() => {
+  //   history.push(`/?search=${keyword}`);
+  // }, [keyword]);
 
   return (
     <styled.NavWrap>

@@ -9,6 +9,8 @@ import { KAKAO_LOGIN_API_URL } from '../../config';
 const { Kakao } = window;
 
 const Login = props => {
+  const [email, setEmail] = useState('');
+  const [showModal, setShowModal] = useState(true);
   const history = useHistory();
 
   const kakaoLoginClickHandler = () => {
@@ -31,9 +33,6 @@ const Login = props => {
       },
     });
   };
-
-  const [email, setEmail] = useState('');
-  const [showModal, setShowModal] = useState(true);
 
   const goToMain = () => {
     history.push('/main');
@@ -73,7 +72,6 @@ const Login = props => {
         } else if (data['MESSAGE'] === 'USE_SOCIAL_LOGIN') {
           alert('소셜 로그인을 사용해 주세요!');
         }
-        console.log(data);
       });
   };
 
@@ -163,6 +161,7 @@ const Login = props => {
 export default Login;
 
 const Background = styled.div`
+  margin-top: 20px;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);

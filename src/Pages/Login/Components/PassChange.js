@@ -106,7 +106,6 @@ const ModalBody = styled.div`
 const Form = styled.div`
   display: flex;
   justify-content: center;
-
   label {
     display: flex;
     flex-direction: column;
@@ -115,7 +114,6 @@ const Form = styled.div`
     font-size: 14px;
     font-weight: 400;
   }
-
   input {
     width: 343px;
     height: 50px;
@@ -126,7 +124,6 @@ const Form = styled.div`
       ${props => (props.isActive ? props.theme.blueTitle : props.theme.grayBtn)};
     border-radius: 5px;
     font-size: 15px;
-
     &::placeholder {
       color: ${props => props.theme.lightGray};
       font-size: 14px;
