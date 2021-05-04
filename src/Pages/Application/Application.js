@@ -135,11 +135,11 @@ export default Application;
 
 const APPLICATION = [
   {
-    count: 0,
+    count: 64,
     title: '전체',
   },
   {
-    count: 30,
+    count: 4,
     title: '지원 완료',
   },
   {
@@ -147,7 +147,7 @@ const APPLICATION = [
     title: '서류 통과',
   },
   {
-    count: 34,
+    count: 30,
     title: '최종 합격',
   },
   {
