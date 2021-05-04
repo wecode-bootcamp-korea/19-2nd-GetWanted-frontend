@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import * as styled from './JobItem.style';
 import { FaHeart } from 'react-icons/fa';
+import { GET_LIKE_API } from '../../../config';
+import axios from 'axios';
 
 const JobItems = ({
   name,
@@ -14,6 +16,27 @@ const JobItems = ({
 
   const handletoggleHeart = () => {
     setLiked(!liked);
+    if (liked === true) {
+      axios.post(`${GET_LIKE_API}`, {
+        headers: {
+          Authorization:
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOX0.0Ost57a2IAb9DhqvnAPvKkkYrG-OZgg0Y1CWDaf8XtY',
+        },
+        body: JSON.stringify({
+          notification: heartCount,
+        }),
+      });
+    } else {
+      axios.post(`${GET_LIKE_API}`, {
+        headers: {
+          Authorization:
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOX0.0Ost57a2IAb9DhqvnAPvKkkYrG-OZgg0Y1CWDaf8XtY',
+        },
+        body: JSON.stringify({
+          notification: heartCount - 1,
+        }),
+      });
+    }
   };
 
   return (

@@ -72,7 +72,6 @@ const Nav = () => {
   };
 
   const myMenuClickEvent = index => {
-    console.log(index);
     if (index === 8) {
       clickLogout();
     }
@@ -81,9 +80,9 @@ const Nav = () => {
     }
   };
 
-  // useEffect(() => {
-  //   history.push(`/?search=${keyword}`);
-  // }, [keyword]);
+  useEffect(() => {
+    keyword === '' ? history.push('/') : history.push(`/?search=${keyword}`);
+  }, [keyword]);
 
   return (
     <styled.NavWrap>

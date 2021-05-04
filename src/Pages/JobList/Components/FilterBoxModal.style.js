@@ -84,25 +84,6 @@ export const TagHeader = styled.p`
   line-height: 20px;
 `;
 
-export const TagBox = styled.div`
-  padding: 0 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-export const Tag = styled.button`
-  margin: 0 5px 10px 5px;
-  padding: 10px 20px;
-  background-color: ${props =>
-    props.id === props.selected ? props.theme.blueTitle : '#f6f6f6'};
-  color: ${props =>
-    props.id === props.selected ? '#fff' : props.theme.mainGray};
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-`;
-
 export const InnerSmallText = styled.p`
   padding: 20px 0 0px 20px;
   font-size: 12px;
@@ -122,4 +103,23 @@ export const SubmitBtn = styled.button`
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+`;
+
+export const TagBox = styled.div`
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+export const Tag = styled.button`
+  margin: 0 5px 10px 5px;
+  padding: 10px 20px;
+  background-color: ${props =>
+    props.id === props.selected ? props.theme.blueTitle : '#f6f6f6'};
+  color: ${props =>
+    props.id === props.selected ? '#fff' : props.theme.mainGray};
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
 `;

@@ -6,6 +6,7 @@ export const GET_LOGIN_API = `http://${JWIP}/signin`;
 export const GET_APPLYLIST_API = `http://${JYIP}/applylist`;
 export const GET_JOBLIST_API = `http://${JYIP}/notifications`;
 export const RESUME_API = `http://${BJIP}/resumes`;
+export const GET_LIKE_API = `http://${JYIP}/notifications/like`;
 
 export const EMAIL_API = `http://${JWIP}/users/email`;
 export const LOGIN_API = `http://${JWIP}/users/signin`;

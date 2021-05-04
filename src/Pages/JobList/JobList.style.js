@@ -9,7 +9,6 @@ export const TagFilterLine = styled.section`
   width: 100%;
   height: 60px;
   padding-top: 5px;
-  /* border: 1px solid ${props => props.theme.grayBorder}; */
 `;
 
 export const TagFilterBox = styled.div`
@@ -37,13 +36,4 @@ export const FilterBoxTitle = styled.h4`
 export const FilterBoxText = styled.span`
   color: ${props => props.theme.lightGray};
   font-size: 14px;
-`;
-
-export const JobListContent = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  flex-wrap: wrap;
-  width: 70%;
-  margin: 0 auto;
 `;
