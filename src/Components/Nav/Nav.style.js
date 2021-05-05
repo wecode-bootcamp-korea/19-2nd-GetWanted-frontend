@@ -5,6 +5,9 @@ export const NavWrap = styled.nav`
   top: 0;
   width: 100%;
   height: 50px;
+  background-color: #fff;
+  border-bottom: 1px solid ${props => props.theme.grayBorder};
+  z-index: 100;
 `;
 
 export const NavInner = styled.ul`
@@ -33,7 +36,7 @@ export const MainMenu = styled.li`
 `;
 
 export const MainMenuLink = styled.a`
-  padding: 20px;
+  padding: 20px 20px 12px 20px;
   color: #000;
   font-weight: 600;
   font-size: 14px;
@@ -63,7 +66,7 @@ export const SearchBtn = styled.button`
 `;
 
 export const BellBtn = styled.button`
-  display: none;
+  display: ${props => (props.userToken === '' ? 'block' : 'none')};
   position: relative;
   padding: 5px 8px;
   background: none;
@@ -77,7 +80,7 @@ export const BellBtn = styled.button`
 `;
 
 export const ProfileBtn = styled.button`
-  display: ${props => (props.userToken ? 'none' : 'block')};
+  display: ${props => (props.userToken === '' ? 'none' : 'block')};
   position: relative;
   padding: 5px 8px;
   background: none;
@@ -87,7 +90,7 @@ export const ProfileBtn = styled.button`
 `;
 
 export const LoginBtn = styled.button`
-  display: ${props => (props.userToken ? 'block' : 'none')};
+  display: ${props => (props.userToken === '' ? 'block' : 'none')};
   position: relative;
   padding: 5px 8px;
   background: none;

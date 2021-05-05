@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const JobListWrap = styled.div`
+  padding-top: 80px;
   background-color: #fff;
 `;
 
@@ -15,7 +16,7 @@ export const TagFilterBox = styled.div`
   ${props => props.theme.flexBetween};
   width: 12%;
   padding: 8px 15px;
-  margin-left: 380px;
+  margin-left: 15%;
   border: 1px solid ${props => props.theme.grayBorder};
   border-radius: 5px;
   cursor: pointer;

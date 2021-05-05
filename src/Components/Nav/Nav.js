@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { BsSearch, BsBell } from 'react-icons/bs';
-import { GET_LOGIN_API } from '../../config';
-import axios from 'axios';
 import * as styled from './Nav.style';
 import MyMenu from './Mymenu/MyMenu';
 import SearchModal from './SearchModal/SearchModal';
@@ -10,8 +8,14 @@ import SearchModal from './SearchModal/SearchModal';
 const Nav = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [onModal, setOnModal] = useState(false);
-  const [userToken, setUserToken] = useState(false);
+  const [userToken, setUserToken] = useState(
+    localStorage.getItem('accessToken')
+  );
+  const [searchInput, setSearchInput] = useState('');
+  const [keyword, setKeyword] = useState('');
   const history = useHistory();
+  const location = useLocation();
+  const params = useParams();
 
   const goToResume = index => {
     if (index === 3) {
@@ -37,26 +41,49 @@ const Nav = () => {
     history.push('/');
   };
 
-  const handleCloseModal = () => {
+  const handleClickCloseModal = () => {
     setOnModal(false);
   };
 
-  useEffect(() => {
-    axios.get(`${GET_LOGIN_API}`, {
-      headers: {
-        accessToken:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMX0.BjBx25V__6w4dNPPVC32UX6OZgQTNOs42oaoBk8xHFE',
-      },
-    });
-    setUserToken(true);
-  }, []);
-
-  const clickLogout = index => {
-    if (index === 8) {
-      localStorage.removeItem('userInfo');
-      history.push('/');
+  const handleEnterCloseModal = e => {
+    if (e.key === 'Enter') {
+      setOnModal(false);
     }
   };
+
+  const handleSearchInput = e => {
+    if (e.key === 'Enter') {
+      setKeyword(searchInput);
+    }
+  };
+
+  const onChangeInput = e => {
+    setSearchInput(e.target.value);
+  };
+
+  const clickLogout = () => {
+    localStorage.removeItem('accessToken');
+    setUserToken(localStorage.getItem('accessToken'));
+    history.push('/');
+  };
+
+  const goToApply = () => {
+    history.push('/apply');
+  };
+
+  const myMenuClickEvent = index => {
+    console.log(index);
+    if (index === 8) {
+      clickLogout();
+    }
+    if (index === 2) {
+      goToApply();
+    }
+  };
+
+  useEffect(() => {
+    history.push(`/?search=${keyword}`);
+  }, [keyword]);
 
   return (
     <styled.NavWrap>
@@ -98,11 +125,14 @@ const Nav = () => {
           </styled.AdminPage>
         </styled.RightMenu>
       </styled.NavInner>
-      <MyMenu show={dropdownVisible} clickLogout={clickLogout}></MyMenu>
+      <MyMenu show={dropdownVisible} myMenuClickEvent={myMenuClickEvent} />
       <SearchModal
         show={onModal}
-        handleCloseModal={handleCloseModal}
-      ></SearchModal>
+        handleClickCloseModal={handleClickCloseModal}
+        onChangeInput={onChangeInput}
+        handleSearchInput={handleSearchInput}
+        handleEnterCloseModal={handleEnterCloseModal}
+      />
     </styled.NavWrap>
   );
 };

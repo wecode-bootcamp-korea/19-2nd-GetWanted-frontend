@@ -42,6 +42,7 @@ export const HeartCount = styled.span`
 
 export const JobItemContent = styled.div`
   margin-top: 20px;
+  cursor: pointer;
 `;
 
 export const ItemTask = styled.h3`
