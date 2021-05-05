@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import * as styled from './JobItem.style';
 import { FaHeart } from 'react-icons/fa';
 
-const JobItems = ({ name, company, image, area, heartCount }) => {
+const JobItems = ({
+  name,
+  company,
+  image,
+  area,
+  heartCount,
+  handleEnterDetail,
+}) => {
   const [liked, setLiked] = useState(false);
 
   const handletoggleHeart = () => {
@@ -20,7 +27,7 @@ const JobItems = ({ name, company, image, area, heartCount }) => {
           </styled.HeartCount>
         </styled.JobHeartBtn>
       </styled.JobItemImg>
-      <styled.JobItemContent>
+      <styled.JobItemContent onClick={() => handleEnterDetail}>
         <styled.ItemTask>{name}</styled.ItemTask>
         <styled.ItemCompany>{company}</styled.ItemCompany>
         <styled.ItemLocation>{area}</styled.ItemLocation>

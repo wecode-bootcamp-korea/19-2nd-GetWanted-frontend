@@ -8,6 +8,7 @@ export const Mymenu = styled.ul`
   right: 17.5%;
   width: 170px;
   height: 373px;
+  background-color: #fff;
   border: 1px solid ${props => props.theme.grayBorder};
 `;
 

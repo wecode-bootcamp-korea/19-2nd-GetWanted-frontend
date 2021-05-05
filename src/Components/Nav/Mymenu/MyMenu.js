@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styled from './MyMenu.style';
 
-const MyMenu = ({ show, clickLogout }) => {
+const MyMenu = ({ show, myMenuClickEvent }) => {
   return (
     show && (
       <styled.Mymenu>
@@ -11,8 +11,7 @@ const MyMenu = ({ show, clickLogout }) => {
               <styled.MyMenuItem
                 key={index}
                 id={index}
-                onclick={() => clickLogout(index)}
-                href="/"
+                onClick={() => myMenuClickEvent(index)}
               >
                 {element}
               </styled.MyMenuItem>

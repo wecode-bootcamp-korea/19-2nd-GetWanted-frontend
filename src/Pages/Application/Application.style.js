@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ApplicationWrap = styled.div`
+  padding-top: 80px;
   width: 100%;
   background-color: #f6f6f6;
 `;

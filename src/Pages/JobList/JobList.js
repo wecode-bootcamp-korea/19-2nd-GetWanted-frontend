@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import * as styled from './JobList.style';
 import JobItem from './Components/JobItems';
 import FilterBoxModal from './Components/FilterBoxModal';
@@ -6,19 +7,24 @@ import { GET_JOBLIST_API } from '../../config';
 import { MdArrowDropDown } from 'react-icons/md';
 import axios from 'axios';
 
-const JobList = () => {
+const JobList = props => {
   const [ItemList, setItemList] = useState([]);
   const [showTagBox, setShowTagBox] = useState(false);
   const [selected, setSelected] = useState(0);
   const [tagCount, setTagCount] = useState(0);
-  const [heartCount, setHeartCount] = useState(0);
+  const history = useHistory();
+  const location = useLocation();
+
+  const decode = x => {
+    return decodeURI(x);
+  };
 
   const handleSelectTag = item => {
     setSelected(item.id);
     setTagCount(1);
   };
 
-  const handleResetTag = item => {
+  const handleResetTag = () => {
     setSelected(0);
     setTagCount(0);
   };
@@ -31,30 +37,29 @@ const JobList = () => {
     setShowTagBox(true);
   };
 
-  const getListData = async () => {
-    axios.get(`${GET_JOBLIST_API}`).then(({ data }) => {
+  const handleEnterDetail = id => {
+    console.log('실행');
+    history.push(`/jobdetails/?${id}`);
+  };
+
+  const handleSearchFilter = () => {
+    const change = decode(location.search);
+    const searchpage = change === '?search=' ? '' : `${change}`;
+    axios.get(`${GET_JOBLIST_API} + ${searchpage}`).then(({ data }) => {
       setItemList(data.notification_list);
-      setHeartCount(data.total);
     });
   };
 
   useEffect(() => {
-    getListData();
-  }, []);
+    handleSearchFilter();
+  }, [location.search]);
 
   const handleChangeList = () => {
-    if (selected === 0) {
-      axios.get(`${GET_JOBLIST_API}`).then(({ data }) => {
-        setItemList(data.notification_list);
-        setSelected(0);
-      });
+    const query = selected === 0 ? '' : `?tag=${selected}`;
+    axios.get(`${GET_JOBLIST_API} + ${query}`).then(({ data }) => {
+      setItemList(data.notification_list);
       setShowTagBox(false);
-    } else {
-      axios.get(`${GET_JOBLIST_API}?tag=${selected}`).then(({ data }) => {
-        setItemList(data.notification_list);
-      });
-      setShowTagBox(false);
-    }
+    });
   };
 
   return (
@@ -74,7 +79,8 @@ const JobList = () => {
             image={item.image}
             area={item.area}
             company={item.company}
-            heartCount={heartCount}
+            heartCount={item.like_count}
+            handleEnterDetail={handleEnterDetail}
           />
         ))}
       </styled.JobListContent>
