@@ -32,6 +32,7 @@ const Resume = () => {
   const location = useLocation();
   const history = useHistory();
   const params = useParams();
+  const token = localStorage.getItem('token');
 
   const handleBasicInfo = e => {
     const { name, value } = e.target;
@@ -47,8 +48,7 @@ const Resume = () => {
     if (!location.state.isNew) {
       fetch(`${RESUME_API}/${params.id}`, {
         headers: {
-          authorization:
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+          authorization: token,
         },
       })
         .then(res => res.json())
@@ -67,8 +67,7 @@ const Resume = () => {
     } else {
       fetch(`${RESUME_API}`, {
         headers: {
-          authorization:
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+          authorization: token,
         },
       })
         .then(res => res.json())
@@ -106,14 +105,13 @@ const Resume = () => {
       phone: loadInput.phone,
       intro: loadInput.intro,
       workInfo: workHistory,
-      status: isFinal,
+      isFinal: isFinal,
     };
 
     fetch(`${RESUME_API}`, {
       method: 'POST',
       headers: {
-        authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+        authorization: token,
       },
       body: JSON.stringify(resumeInfo),
     })
@@ -136,7 +134,7 @@ const Resume = () => {
       phone: loadInput.phone,
       intro: loadInput.intro,
       workInfo: workHistory,
-      status: isFinal,
+      isFinal: isFinal,
     };
   }, [isFinal]);
 
@@ -214,6 +212,7 @@ const Resume = () => {
                       workHistory={workHistory}
                       setWorkHistory={setWorkHistory}
                       handleLoadWork={handleLoadWork}
+                      boxId={boxId}
                       key={boxId}
                       id={boxId}
                       isNew={location.state.isNew}

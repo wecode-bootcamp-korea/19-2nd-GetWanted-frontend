@@ -19,9 +19,7 @@ const Nav = () => {
 
   const goToResume = index => {
     if (index === 3) {
-      history.push('/resume');
-    } else {
-      history.push('/');
+      history.push('/storage');
     }
   };
 
@@ -62,8 +60,9 @@ const Nav = () => {
   };
 
   const clickLogout = () => {
+    setDropdownVisible(!dropdownVisible);
     localStorage.removeItem('accessToken');
-    setUserToken(localStorage.getItem('accessToken'));
+    setUserToken('');
     history.push('/');
   };
 
@@ -81,7 +80,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    keyword === '' ? history.push('/') : history.push(`/?search=${keyword}`);
+    keyword !== '' && history.push(`/?search=${keyword}`);
   }, [keyword]);
 
   return (
@@ -97,7 +96,6 @@ const Nav = () => {
             return (
               <styled.MainMenuLink
                 key={index}
-                href="/"
                 onClick={() => goToResume(index)}
               >
                 {element}

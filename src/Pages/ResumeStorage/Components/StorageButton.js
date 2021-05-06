@@ -14,6 +14,7 @@ const StorageButton = ({ type }) => {
   const [fileList, setFileList] = useState([]);
   const hiddenFileInput = useRef(null);
   const history = useHistory();
+  const token = localStorage.getItem('token');
 
   const handleClickWrite = () => {
     history.push({ pathname: '/resume', state: { isNew: true } });
@@ -32,8 +33,7 @@ const StorageButton = ({ type }) => {
     fetch(`${STORAGE_FILES_API}`, {
       method: 'POST',
       headers: {
-        authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+        authorization: token,
       },
       body: formData,
     })
@@ -52,14 +52,12 @@ const StorageButton = ({ type }) => {
       {
         method: 'DELETE',
         headers: {
-          authorization:
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+          authorization: token,
         },
       }
     )
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         setIsSelected(!isSelected);
       })
       .catch(error => console.log(error));
@@ -68,15 +66,13 @@ const StorageButton = ({ type }) => {
   useEffect(() => {
     fetch(`${STORAGE_LIST_API}`, {
       headers: {
-        authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.F2PHl30DhhXk1wvQntHS3ZR7guDGgDjigeYX4MhwLd0',
+        authorization: token,
       },
     })
       .then(res => res.json())
       .then(list => {
-        setResumeList(list.RESULTS[0].resume_list);
-        setFileList(list.RESULTS[0].fileresume_list);
-        console.log(resumeList);
+        setResumeList(list.RESULTS.resume_list);
+        setFileList(list.RESULTS.fileresume_list);
       })
       .catch(err => console.log(err));
   }, [isSelected]);

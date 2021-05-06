@@ -43,7 +43,7 @@ const JobList = props => {
   };
 
   const handleEnterDetail = id => {
-    history.push(`/jobdetails/?${id}`);
+    history.push(`/jobdetails/${id}`);
   };
 
   const getCompanyList = () => {
@@ -94,7 +94,6 @@ const JobList = props => {
         }}
       >
         {itemList.map(item => {
-          console.log('item reset');
           return (
             <JobItem
               key={item.id}
@@ -104,6 +103,7 @@ const JobList = props => {
               company={item.company}
               heartCount={item.like_count}
               handleEnterDetail={handleEnterDetail}
+              id={item.id}
             />
           );
         })}
