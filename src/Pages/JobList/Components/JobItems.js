@@ -11,6 +11,7 @@ const JobItems = ({
   area,
   heartCount,
   handleEnterDetail,
+  id,
 }) => {
   const [liked, setLiked] = useState(false);
 
@@ -50,7 +51,7 @@ const JobItems = ({
           </styled.HeartCount>
         </styled.JobHeartBtn>
       </styled.JobItemImg>
-      <styled.JobItemContent onClick={() => handleEnterDetail}>
+      <styled.JobItemContent onClick={() => handleEnterDetail(id)}>
         <styled.ItemTask>{name}</styled.ItemTask>
         <styled.ItemCompany>{company}</styled.ItemCompany>
         <styled.ItemLocation>{area}</styled.ItemLocation>

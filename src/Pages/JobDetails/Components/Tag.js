@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Tag = ({ tagList }) => {
-  console.log(tagList);
   return (
     <>
-      {tagList.map(tag => (
-        <TagButton>{tag.name}</TagButton>
+      {tagList.map((tag, index) => (
+        <TagButton key={index}>{tag.name}</TagButton>
       ))}
     </>
   );

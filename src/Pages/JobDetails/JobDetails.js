@@ -11,15 +11,13 @@ import {
   JOB_DETAILS_USER_API,
   JOB_DETAILS_RESUME_API,
 } from '../../config';
-
+const token = localStorage.getItem('token');
 const JobDetails = () => {
   const [isAsideOpen, setIsAsideOpen] = useState(true);
   const [details, setDetails] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [resumeList, setResumeList] = useState([]);
   const params = useParams();
-  const token =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOX0.0Ost57a2IAb9DhqvnAPvKkkYrG-OZgg0Y1CWDaf8XtY';
 
   const reuseFetch = (api, method, token, payload) => {
     const options = {
@@ -65,8 +63,8 @@ const JobDetails = () => {
       };
       reuseFetch(`${JOB_DETAILS_USER_API}`, 'POST', token, applied)
         .then(result => {
-          console.log(result);
           alert('제출 완료 🙃');
+          setIsAsideOpen(true);
         })
         .catch(err => console.log(err));
     }

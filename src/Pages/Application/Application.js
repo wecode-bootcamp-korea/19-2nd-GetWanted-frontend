@@ -9,13 +9,13 @@ const Application = props => {
   const [apply, setApply] = useState(false);
   const [applyList, setApplyList] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const token = localStorage.getItem('token');
 
   const getApplyListData = () => {
     axios
       .get(`${GET_APPLYLIST_API}`, {
         headers: {
-          Authorization:
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMX0.BjBx25V__6w4dNPPVC32UX6OZgQTNOs42oaoBk8xHFE',
+          Authorization: token,
         },
       })
       .then(({ data }) => {
@@ -38,7 +38,7 @@ const Application = props => {
   const onChangeInput = e => {
     setSearchInput(e.target.value);
     if (!e.target.value) {
-      setApplyList(ITEMINFO);
+      setApplyList(applyList);
     }
   };
 
@@ -82,7 +82,9 @@ const Application = props => {
             })}
           </styled.ApplyList>
           <styled.ApplyListHeader>
-            <styled.ApplyCount>총 0건</styled.ApplyCount>
+            <styled.ApplyCount>
+              {`총 ${Number(applyList.length)}건`}
+            </styled.ApplyCount>
             <styled.ApplySearch
               onChange={onChangeInput}
               onKeyPress={handlePressSubmit}

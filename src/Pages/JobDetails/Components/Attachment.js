@@ -10,6 +10,11 @@ const Attachment = ({
   handleCheckBoxClick,
   index,
 }) => {
+  const updateStatus = status => {
+    if (status === undefined) return '첨부 완료';
+    else return status ? '작성 완료' : '작성 중';
+  };
+
   return (
     <Container isClicked={isClicked}>
       <Checkbox onClick={() => handleCheckBoxClick(index)}>
@@ -19,7 +24,13 @@ const Attachment = ({
         <h4>{fullName}</h4>
         <FileInfo>
           <span>{date}</span>
-          <span>{status ? '작성 완료' : '작성 중'}</span>
+          <span>
+            {status === undefined
+              ? '첨부 완료'
+              : status === true
+              ? '작성 완료'
+              : '작성 중'}
+          </span>
         </FileInfo>
       </File>
     </Container>

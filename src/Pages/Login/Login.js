@@ -64,7 +64,6 @@ const Login = props => {
       .then(data => {
         if (data['MESSAGE'] === 'SUCCESS') {
           history.push({ pathname: '/userpass', state: { email: email } });
-          localStorage.setItem('TOKEN', data.access_token);
         } else if (data['MESSAGE'] === 'INVALID_EMAIL') {
           alert('옳지 않은 이메일 형식입니다.');
         } else if (data['MESSAGE'] === 'ACCOUNT_NOT_EXIST') {

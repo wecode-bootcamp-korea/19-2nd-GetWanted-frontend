@@ -47,7 +47,7 @@ const Userpassword = () => {
         if (data['MESSAGE'] === 'SUCCESS') {
           alert('로그인 성공!');
           history.push('/');
-          localStorage.setItem('token', data.access_token);
+          localStorage.setItem('token', data.TOKEN);
         } else if (data['MESSAGE'] === 'INCORRECT_PASSWORD') {
           alert('비밀번호가 일치하지 않습니다!');
         }
