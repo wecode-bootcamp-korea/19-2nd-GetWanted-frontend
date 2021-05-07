@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import Routes from './Routes';
 import GlobalStyle from './Styles/GlobalStyle';
-import theme from './Styles/theme';
+import Theme from './Styles/Theme';
 
 ReactDOM.render(
   <>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme}>
       <Routes />
     </ThemeProvider>
     <GlobalStyle />
