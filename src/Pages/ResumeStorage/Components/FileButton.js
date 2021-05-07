@@ -5,7 +5,7 @@ import { FiDownload } from 'react-icons/fi';
 import styled from 'styled-components';
 import { STORAGE_FILES_API } from '../../../config';
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('TOKEN');
 const FileButton = ({ id, resume, type, deleteResume }) => {
   const history = useHistory();
   const [docStatus, setDocStatus] = useState('');
