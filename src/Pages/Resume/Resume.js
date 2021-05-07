@@ -32,7 +32,7 @@ const Resume = () => {
   const location = useLocation();
   const history = useHistory();
   const params = useParams();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('TOKEN');
 
   const handleBasicInfo = e => {
     const { name, value } = e.target;
@@ -136,6 +136,7 @@ const Resume = () => {
       workInfo: workHistory,
       isFinal: isFinal,
     };
+    console.log(resumeInfo);
   }, [isFinal]);
 
   return (

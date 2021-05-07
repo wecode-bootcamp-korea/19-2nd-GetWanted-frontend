@@ -67,7 +67,7 @@ export const SearchBtn = styled.button`
 `;
 
 export const BellBtn = styled.button`
-  display: ${props => (props.userToken === '' ? 'block' : 'none')};
+  display: ${props => (props.userToken === '' ? 'none' : 'block')};
   position: relative;
   padding: 5px 8px;
   background: none;

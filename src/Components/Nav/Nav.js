@@ -8,9 +8,7 @@ import SearchModal from './SearchModal/SearchModal';
 const Nav = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [onModal, setOnModal] = useState(false);
-  const [userToken, setUserToken] = useState(
-    localStorage.getItem('accessToken')
-  );
+  const [userToken, setUserToken] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
@@ -61,7 +59,7 @@ const Nav = () => {
 
   const clickLogout = () => {
     setDropdownVisible(!dropdownVisible);
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('TOKEN');
     setUserToken('');
     history.push('/');
   };
@@ -82,6 +80,12 @@ const Nav = () => {
   useEffect(() => {
     keyword !== '' && history.push(`/?search=${keyword}`);
   }, [keyword]);
+
+  useEffect(() => {
+    if (localStorage.getItem('TOKEN')) {
+      setUserToken(localStorage.getItem('TOKEN'));
+    }
+  });
 
   return (
     <styled.NavWrap>

@@ -60,14 +60,14 @@ const WorkBox = ({
               <Year
                 onChange={handleLoadWork}
                 className="year"
-                name="startYear"
+                name="endYear"
                 placeholder="YYYY"
                 value={!isNew ? work.endYear : undefined}
               />
               .
               <Month
                 onChange={handleLoadWork}
-                name="startMonth"
+                name="endMonth"
                 className="month"
                 placeholder="MM"
                 value={!isNew ? work.endMonth : undefined}

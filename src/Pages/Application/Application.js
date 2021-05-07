@@ -9,7 +9,7 @@ const Application = props => {
   const [apply, setApply] = useState(false);
   const [applyList, setApplyList] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('TOKEN');
 
   const getApplyListData = () => {
     axios

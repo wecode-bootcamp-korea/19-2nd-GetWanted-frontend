@@ -11,7 +11,7 @@ import {
   JOB_DETAILS_USER_API,
   JOB_DETAILS_RESUME_API,
 } from '../../config';
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('TOKEN');
 const JobDetails = () => {
   const [isAsideOpen, setIsAsideOpen] = useState(true);
   const [details, setDetails] = useState([]);

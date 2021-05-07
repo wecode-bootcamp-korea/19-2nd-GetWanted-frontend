@@ -82,9 +82,7 @@ const Login = props => {
   function sendUnlink() {
     Kakao.API.request({
       url: '/v1/user/unlink',
-      success: function (response) {
-        console.log(response);
-      },
+      success: function (response) {},
       fail: function (error) {
         console.log(error);
       },

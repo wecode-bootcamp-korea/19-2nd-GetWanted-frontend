@@ -14,7 +14,7 @@ const StorageButton = ({ type }) => {
   const [fileList, setFileList] = useState([]);
   const hiddenFileInput = useRef(null);
   const history = useHistory();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('TOKEN');
 
   const handleClickWrite = () => {
     history.push({ pathname: '/resume', state: { isNew: true } });
