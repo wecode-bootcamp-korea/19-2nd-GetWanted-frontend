@@ -48,25 +48,21 @@
 - `Login` : 로그인 페이지
     - 이메일 회원가입 여부에 따른 페이지 연결
     - 소셜로그인 가입 메일 중복 체크 알림 기능
-    - 백엔드API와 통신하여 이메일로 비밀번호 재설정 기능 구현 fetch method patch
+    - 이메일로 비밀번호 재설정 기능 구현 fetch method patch
     - 조건부 렌더링을 통한 비밀번호 재설정 컴포넌트로 render
     - usehistory,uselocation을 이용하여 state에 이메일 값 전달
-    - 로컬스토리지에 토큰 저장
+    - 로그인 성공시 로컬스토리지에 토큰 저장
 
 - `Signup`
     - 조건부 렌더링을 통한 모달창 구현
     - map 함수를 이용하여 input 값 관리
-    - input 태그 각각 마다 onFocus,onBlur 이벤트
     - 정규식 표현 만족시 회원가입 버튼 활성화
     - 각각의 정규식에 대한 조건문을 이용하여 alert
 
 - `Social Login`
     - 카카오 로그인 기능 구현
-    - Redirect URI 등록
-    - JavaScript SDK 적용
-    - window 객체에서 Kakao API 가져오기
-    - Kakao.Auth.login 함수 이용
-    - 카카오 사용자 토큰 백엔드 서버로 전달
+    - Redirect URI 등록,JavaScript SDK 적용
+    - Kakao.Auth.login 함수 카카오 사용자 토큰 백엔드 서버로 전달
     - 백엔드 서버에서 받아온 새로운 토큰 로컬스토리지에 저장
     - 테스트를 위한 연결 끊기 기능 추가
 
