@@ -62,7 +62,7 @@
 - <img alt="Visual Studio Code" src="https://img.shields.io/badge/VisualStudioCode-0078d7.svg?&style=for-the-badge&logo=visual-studio-code&logoColor=white"/>
 ## ✏️ Blogs
 - 이예원 : https://jessywlee.medium.com
-- 김도희 :
+- 김도희 : https://velog.io/@_dodo_hee
 - 정새미 : 
 
 ## ✏️ References
